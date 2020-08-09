@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.srijan.javafx.paintIndia.PaintIndiaController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="596.0" minWidth="10.0" prefWidth="289.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1031.0" minWidth="10.0" prefWidth="941.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+            <children>
+                <TitledPane text="Pen Size">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <RadioButton fx:id="smallest" mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" text="smallest">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="toggleGroup" />
+                                    </toggleGroup>
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </RadioButton>
+                                <RadioButton fx:id="small" mnemonicParsing="false" prefHeight="43.0" prefWidth="139.0" text="smaller" toggleGroup="$toggleGroup">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </RadioButton>
+                                <RadioButton fx:id="medium" mnemonicParsing="false" prefHeight="43.0" prefWidth="130.0" text="medium" toggleGroup="$toggleGroup">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </RadioButton>
+                                <RadioButton fx:id="large" mnemonicParsing="false" prefHeight="43.0" prefWidth="129.0" text="large" toggleGroup="$toggleGroup">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </RadioButton>
+                                <RadioButton fx:id="largest" mnemonicParsing="false" text="largest" toggleGroup="$toggleGroup">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </RadioButton>
+                            </children>
+                        </VBox>
+                    </content>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </TitledPane>
+                <TitledPane prefHeight="200.0" prefWidth="200.0" text="Pen Colour">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <ColorPicker fx:id="colorPicker" editable="true" prefHeight="89.0" prefWidth="185.0" promptText="Select colour from here" />
+                            </children>
+                        </VBox>
+                    </content>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </TitledPane>
+                <Button fx:id="clear" contentDisplay="CENTER" depthTest="ENABLE" mnemonicParsing="false" onAction="#clear" text="Clear">
+                    <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                    </cursor>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                </Button>
+                <Button fx:id="undo" mnemonicParsing="false" onAction="#undo" text="Undo">
+                    <font>
+                        <Font size="28.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+        <MenuBar prefHeight="29.0" prefWidth="682.0" GridPane.columnSpan="2">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="save" mnemonicParsing="false" onAction="#onSave" text="Save" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="saveAs" mnemonicParsing="false" onAction="#onSaveAs" text="Save As" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="open" mnemonicParsing="false" onAction="#onOpen" text="Open" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="close" mnemonicParsing="false" onAction="#onClose" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" onAction="#about" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+      <ScrollPane prefHeight="848.0" prefWidth="918.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <content>
+            <Pane fx:id="pane" onMouseDragged="#draw" prefHeight="923.0" prefWidth="1401.0" />
+         </content>
+      </ScrollPane>
+    </children>
+</GridPane>

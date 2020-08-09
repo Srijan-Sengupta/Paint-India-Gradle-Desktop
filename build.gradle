@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.5'
+    id 'org.beryx.jlink' version '2.21.2'
+}
+
+group 'com.srijan.javafx.Paint-India'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+javafx{
+    modules = [ 'javafx.controls' , 'javafx.base' , 'javafx.fxml', 'javafx.graphics', 'javafx.swing']
+}
+setMainClassName("com.srijan.javafx.paintIndia.Main")
+setApplicationName("Paint-India")
+jlink {
+    //options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'Paint-India'
+    }
+    targetPlatform('linux-x64'){
+        jdkHome = '/usr/lib/jvm/zulu-14-amd64'
+        addExtraModulePath("/home/srijan-sengupta/Downloads/linux/javafx-jmods-11.0.2")
+    }
+     targetPlatform("win") {
+        jdkHome = jdkDownload("https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_windows-x64_bin.zip")
+        addExtraModulePath("/home/srijan-sengupta/Downloads/javafx-jmods-11.0.2")
+     }
+
+    targetPlatform("mac") {
+        jdkHome = jdkDownload("https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_osx-x64_bin.tar.gz")
+        addExtraModulePath("/home/srijan-sengupta/Downloads/mac/javafx-jmods-11.0.2")
+    }
+}
+
