@@ -1,5 +1,6 @@
 # Paint-India-Gradle-Desktop
 ## Paint-India application using Javafx
+![Multiplatform Installer](https://github.com/Srijan-Sengupta/Paint-India-Gradle-Desktop/workflows/Multiplatform%20Installer/badge.svg?branch=master)
 
 This is a Desktop Application created using FXML and Javafx.
 
