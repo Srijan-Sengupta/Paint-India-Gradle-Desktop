@@ -1,0 +1,53 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+name: Multiplatform Installer
+on: [push,pull_request]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+      fail-fast: false
+      
+    name: ${{ matrix.os }}
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: '14.0.2'
+    - name: Echo JAVA_HOME
+      run: echo $JAVA_HOME
+    - name: Verify Gradle Wrapper
+      uses: gradle/wrapper-validation-action@v1
+    - name: Execute build
+      run: ./gradlew --info --stacktrace build
+    - name: Execute jpackage
+      run: ./gradlew --info --stacktrace jpackage
+    - name: Upload DMG as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Paint-India-${{ matrix.os }}-dmg
+        path: build/jpackage/*.dmg
+    - name: Upload EXE as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Paint-India-${{ matrix.os }}-exe
+        path: build/jpackage/*.exe
+    - name: Upload MSI as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Paint-India-${{ matrix.os }}-msi
+        path: build/jpackage/*.msi
+    - name: Upload DEB as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Paint-India-${{ matrix.os }}-deb
+        path: build/jpackage/*.deb
+    - name: Upload RPM as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Paint-India-${{ matrix.os }}-rpm
+        path: build/jpackage/*.rpm
