@@ -25,6 +25,7 @@ jlink {
     launcher {
         name = 'Paint-India'
     }
+    /*
     targetPlatform('linux-x64'){
         jdkHome = '/usr/lib/jvm/zulu-14-amd64'
         addExtraModulePath("/home/srijan-sengupta/Downloads/linux/javafx-jmods-11.0.2")
@@ -37,6 +38,6 @@ jlink {
     targetPlatform("mac") {
         jdkHome = jdkDownload("https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_osx-x64_bin.tar.gz")
         addExtraModulePath("/home/srijan-sengupta/Downloads/mac/javafx-jmods-11.0.2")
-    }
+    }*/
 }
 
