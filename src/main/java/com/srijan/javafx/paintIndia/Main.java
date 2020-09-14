@@ -39,7 +39,7 @@ public class Main extends Application {
                 controller.onForceClose(null);
             }
         });
-        primaryStage.getIcons().add(new Image("/Paint-India.png"));
+        primaryStage.getIcons().add(new Image("/paintindia.png"));
     }
 
     public static Stage getStage() {
