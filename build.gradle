@@ -1,3 +1,5 @@
+import org.beryx.jlink.data.JPackageData
+
 plugins {
     id 'java'
     id 'application'
@@ -21,15 +23,16 @@ javafx{
 setMainClassName("com.srijan.javafx.paintIndia.Main")
 setApplicationName("Paint-India")
 jlink {
-    //options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
         name = 'Paint-India'
     }
+
     /*
     targetPlatform('linux-x64'){
         jdkHome = '/usr/lib/jvm/zulu-14-amd64'
         addExtraModulePath("/home/srijan-sengupta/Downloads/linux/javafx-jmods-11.0.2")
-    }
+    }/*
      targetPlatform("win") {
         jdkHome = jdkDownload("https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_windows-x64_bin.zip")
         addExtraModulePath("/home/srijan-sengupta/Downloads/javafx-jmods-11.0.2")
@@ -39,5 +42,47 @@ jlink {
         jdkHome = jdkDownload("https://download.java.net/java/GA/jdk14.0.2/205943a0976c4ed48cb16f1043c5c647/12/GPL/openjdk-14.0.2_osx-x64_bin.tar.gz")
         addExtraModulePath("/home/srijan-sengupta/Downloads/mac/javafx-jmods-11.0.2")
     }*/
+
+    def opt = jpackageData.get()
+    opt.appVersion = '1.0'
+    //opt.imageName = 'Paint-India'
+    opt.installerName = 'Paint-India'
+    def os = org.gradle.internal.os.OperatingSystem.current()
+    def imgType = os.windows?'ico':os.macOsX?'icns':'png'
+    jpackage {
+        imageOptions += ['--icon' , "$project.rootDir/src/resources/paintindia.$imgType"]
+    }
+
+    opt.installerOptions = ['--resource-dir', "$project.buildDir/resources"]
+    if (os.windows){
+        opt.installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
+    }
+
+    if (os.macOsX){
+        opt.installerOptions += ['--mac-package-name','Paint-India']
+    }
+
+    if (os.linux){
+        opt.installerOptions += ['--type', 'deb','--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
+    }
+print("$project.rootDir/src/resources/paintindia.$imgType")
 }
+
+/*
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    def os = org.gradle.internal.os.OperatingSystem.current()
+    def imgType = os.windows?"ico":os.macOsX?"icns":"png"
+    options += ["--icon" , "src/main/resources/Paint-India.$imgType"]
+
+    if (os.windows){
+        options += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
+    }
+
+    if (os.macOsX){
+        options += ['--mac-package-name','Paint-India']
+    }
+
+    if (os.linux){
+        options += ['--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
+    }*/
 
