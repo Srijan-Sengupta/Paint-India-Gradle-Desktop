@@ -50,7 +50,7 @@ jlink {
     def os = org.gradle.internal.os.OperatingSystem.current()
     def imgType = os.windows?'ico':os.macOsX?'icns':'png'
     jpackage {
-        imageOptions += ['--icon' , "$project.rootDir/src/resources/paintindia.$imgType"]
+        imageOptions += ['--icon' , "$project.rootDir/src/main/resources/paintindia.$imgType"]
     }
 
     opt.installerOptions = ['--resource-dir', "$project.buildDir/resources"]
@@ -65,7 +65,7 @@ jlink {
     if (os.linux){
         opt.installerOptions += ['--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
     }
-print("$project.rootDir/src/resources/paintindia.$imgType")
+print("$project.rootDir/src/main/resources/paintindia.$imgType")
 }
 
 /*
