@@ -63,7 +63,7 @@ jlink {
     }
 
     if (os.linux){
-        opt.installerOptions += ['--type', 'deb','--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
+        opt.installerOptions += ['--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
     }
 print("$project.rootDir/src/resources/paintindia.$imgType")
 }
