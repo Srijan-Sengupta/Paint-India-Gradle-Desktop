@@ -3,12 +3,12 @@ import org.beryx.jlink.data.JPackageData
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.5'
-    id 'org.beryx.jlink' version '2.21.2'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.beryx.jlink' version '2.22.0'
 }
 
 group 'com.srijan.javafx.Paint-India'
-version '1.0'
+version '0.2'
 
 repositories {
     mavenCentral()
@@ -44,16 +44,16 @@ jlink {
     }*/
 
     def opt = jpackageData.get()
-    opt.appVersion = '1.0'
+    opt.appVersion = version
     //opt.imageName = 'Paint-India'
     opt.installerName = 'Paint-India'
     def os = org.gradle.internal.os.OperatingSystem.current()
     def imgType = os.windows?'ico':os.macOsX?'icns':'png'
     jpackage {
-        imageOptions += ['--icon' , "$project.rootDir/src/main/resources/paintindia.$imgType"]
+        icon = "$project.rootDir/src/main/resources/paintindia.$imgType"
     }
 
-    opt.installerOptions = ['--resource-dir', "$project.buildDir/resources"]
+    opt.installerOptions = ['--resource-dir', "$project.buildDir/jpackage/Paint-India/lib"]
     if (os.windows){
         opt.installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
     }
@@ -63,7 +63,7 @@ jlink {
     }
 
     if (os.linux){
-        opt.installerOptions += ['--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
+        opt.installerOptions += ['--type','deb','--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
     }
 print("$project.rootDir/src/main/resources/paintindia.$imgType")
 }
