@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Paint-India
+Comment=Paint-India
+Exec=/opt/paint-india/bin/Paint-India %U
+Icon=/opt/paint-india/lib/Paint-India.png
+Terminal=false
+Type=Application
+Categories=Painting;Graphics;
+MimeType=image/png;image/jpeg;
+StartupWMClass=com.srijan.javafx.paintIndia.Main

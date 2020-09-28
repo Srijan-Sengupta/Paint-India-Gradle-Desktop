@@ -1,4 +1,4 @@
-import org.beryx.jlink.data.JPackageData
+
 
 plugins {
     id 'java'
@@ -8,7 +8,7 @@ plugins {
 }
 
 group 'com.srijan.javafx.Paint-India'
-version '0.2'
+version '0.4'
 
 repositories {
     mavenCentral()
@@ -17,11 +17,15 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
 javafx{
     modules = [ 'javafx.controls' , 'javafx.base' , 'javafx.fxml', 'javafx.graphics', 'javafx.swing']
 }
+
 setMainClassName("com.srijan.javafx.paintIndia.Main")
 setApplicationName("Paint-India")
+
+
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
@@ -50,20 +54,22 @@ jlink {
     def os = org.gradle.internal.os.OperatingSystem.current()
     def imgType = os.windows?'ico':os.macOsX?'icns':'png'
     jpackage {
-        icon = "$project.rootDir/src/main/resources/paintindia.$imgType"
-    }
+        icon = "$project.rootDir/src/main/resources/Paint-India.$imgType"
 
-    opt.installerOptions = ['--resource-dir', "$project.buildDir/jpackage/Paint-India/lib"]
-    if (os.windows){
-        opt.installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
-    }
 
-    if (os.macOsX){
-        opt.installerOptions += ['--mac-package-name','Paint-India']
-    }
+        installerOptions = ['--resource-dir', "$project.rootDir/src/main/resources",
+                                '--verbose']
+        if (os.windows) {
+            installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
+        }
 
-    if (os.linux){
-        opt.installerOptions += ['--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
+        if (os.macOsX) {
+            installerOptions += ['--mac-package-name', 'Paint-India']
+        }
+
+        if (os.linux) {
+            installerOptions += ['--linux-package-name', 'paint-india', '--linux-deb-maintainer', 'srijansengupta306@gmail.com', '--linux-shortcut']
+        }
     }
 print("$project.rootDir/src/main/resources/paintindia.$imgType")
 }
@@ -85,4 +91,11 @@ print("$project.rootDir/src/main/resources/paintindia.$imgType")
     if (os.linux){
         options += ['--linux-package-name','paint-india','--linux-deb-maintainer','srijansengupta306@gmail.com', '--linux-shortcut']
     }*/
-
+    /*
+tasks.jpackageImage.doLast {
+    copy {
+        from "src/main/resources"
+        include "Paint-India.desktop"
+        into "build/jpackage/Paint-India/lib"
+    }
+}*/
