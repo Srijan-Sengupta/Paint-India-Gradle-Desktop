@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: [setf-hosted, linux, ARM64]
+    runs-on: [setf-hosted, linux, X64]
 
     steps:
     - uses: actions/checkout@v2
