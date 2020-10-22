@@ -18,12 +18,11 @@ steps:
 
 - task: Gradle@2
   inputs:
-  
     gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    javaHomeOption: 'Path'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
+    tasks: 'jpackage'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'jpackage --stacktrace'
+    codeCoverageToolOption: 'Cobertura'
+    codeCoverageClassFilesDirectories: 'build/classes/main/'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
