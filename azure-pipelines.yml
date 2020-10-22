@@ -19,7 +19,7 @@ steps:
 - task: Gradle@2
   inputs:
     gradleWrapperFile: 'gradlew'
-    workingDirectory: '/'
+    workingDirectory: ''
     tasks: 'jpackage'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
