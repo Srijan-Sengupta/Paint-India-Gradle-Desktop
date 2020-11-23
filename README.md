@@ -3,7 +3,7 @@
 
 ![Multiplatform Installer](https://github.com/Srijan-Sengupta/Paint-India-Gradle-Desktop/workflows/Multiplatform%20Installer/badge.svg?branch=master)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Srijan-Sengupta/Paint-India-Gradle-Desktop/Java%20CI%20with%20Gradle?label=Build&style=plastic)
-![GitHub All Releases](https://img.shields.io/github/downloads/Srijan-Sengupta/Paint-India-Gradle-Desktop/total)
+![[GitHub All Releases](https://img.shields.io/github/downloads/Srijan-Sengupta/Paint-India-Gradle-Desktop/total)](https://github.com/Srijan-Sengupta/Paint-India-Gradle-Desktop/releases)
 This is a Desktop Application created using FXML and Javafx.
 
 If you are looking for downloads, please go to [releases](https://github.com/srijansgupta/Paint-India-Gradle-Desktop/releases) where you will find **Assets**.
